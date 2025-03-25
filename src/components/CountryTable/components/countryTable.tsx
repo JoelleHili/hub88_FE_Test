@@ -1,25 +1,25 @@
-import client from "../../../api/apolloClient";
-import { useEffect, useState } from "react";
-import { ICountry } from "../types/countryTypes";
-import { Table } from "../..";
-import getCountriesQuery from "../helpers/getCountriesQuery";
+import client from "../../../api/apolloClient"
+import { useEffect, useState } from "react"
+import { ICountry } from "../types/countryTypes"
+import { Table } from "../.."
+import getCountriesQuery from "../helpers/getCountriesQuery"
 
 const CountryTable: React.FC = () => {
-    const [countries, setCountries] = useState<ICountry[]>([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
+    const [countries, setCountries] = useState<ICountry[]>([])
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState<string | null>(null)
 
     useEffect(() => {
         client
             .query({ query: getCountriesQuery })
             .then((response) => {
-                const filterData = response.data.countries.map(({ __typename, ...rest }) => rest) //Filter Data
-                setCountries(filterData);
-                setLoading(false);
+                const filterData = response.data.countries.map(({ __typename, ...rest }) => rest)
+                setCountries(filterData)
+                setLoading(false)
             })
             .catch((err) => {
-                setError(err.message);
-                setLoading(false);
+                setError(err.message)
+                setLoading(false)
             });
     }, []);
 

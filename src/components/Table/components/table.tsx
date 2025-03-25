@@ -1,9 +1,9 @@
 interface ITable<T extends Record<string, string | number | boolean>> {
-    data: T[];
+    data: T[]
 }
 
 const table = <T extends Record<string, string | number | boolean>,>({ data }: ITable<T>) => {
-    if (data.length === 0) return <p>No data available</p>;
+    if (data.length === 0) return <p>No data available</p>
 
     console.log(data)
     return (
