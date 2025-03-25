@@ -1,14 +1,22 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 interface IUseDebounce {
-    debounceVariable: string | number
-    delay: number
+    value: string | number
+    delay?: number
 }
 
-const useDebounce: React.FC<IUseDebounce> = ({debounceVariable, delay = 300}) => {
-    
+const useDebounce = ({ value, delay = 300 }: IUseDebounce) => {
+    const [debounceValue, setDebounceValue] = useState(value)
 
-    return <></>
+    useEffect(() => {
+        const debounceFunction = setTimeout(() => {
+            setDebounceValue(value)
+        }, delay)
+
+        return () => clearTimeout(debounceFunction)
+    }, [value, delay])
+
+    return debounceValue
 }
 
 export default useDebounce
