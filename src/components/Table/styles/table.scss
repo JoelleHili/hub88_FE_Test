@@ -1,0 +1,61 @@
+.table {
+  width: 50vw;
+  height: 50vh;
+
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+
+  box-shadow: inset 8px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 32px;
+  overflow: hidden;
+
+  background-color: #3d3d3d;
+
+  &__header {
+    &__row{
+        display: flex;
+        font-weight: bold; 
+        padding: 0px 32px;
+    } 
+
+    text-transform: capitalize;
+    flex: 1;  
+  }
+
+  &__body {
+    background-color: #ebebeb;
+    border-radius: 16px;
+    padding: 16px;
+    height: 100%;
+    gap: 8px;
+
+    box-shadow: inset 8px 4px 4px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__row {
+    &__container{
+        flex-direction: column;
+    }
+    padding: 0px 16px;
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__cell {
+    color: #3d3d3d;
+    flex: 1;
+  }
+
+  &__divider{
+    height: 4px;
+    width: 100%;
+    background-color: #3d3d3d;
+    border-radius: 4px;
+
+    box-shadow: inset 8px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+}
