@@ -4,8 +4,7 @@ interface ITable<T extends Record<string, string | number | boolean>> {
 
 const table = <T extends Record<string, string | number | boolean>,>({ data }: ITable<T>) => {
     if (data.length === 0) return <p>No data available</p>
-
-    console.log(data)
+    
     return (
         <div className="table">
             <div className="table__header__row">
@@ -22,7 +21,7 @@ const table = <T extends Record<string, string | number | boolean>,>({ data }: I
                                 <div key={key} className="table__cell">{String(value)}</div>
                             ))}
                         </div>
-                        {rowIndex !== data.length - 1 && <div className="table__divider"/>}
+                        {rowIndex !== data.length - 1 && <div className="table__divider" />}
                     </div>
                 ))}
             </div>
