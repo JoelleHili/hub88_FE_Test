@@ -1,9 +1,9 @@
-@use "./components/Table/styles/table.scss" as *;
-@use "./components/CountryTable/styles/countryTable.scss" as *;
+@use "./components/Table/styles/table.scss";
+@use "./components/CountryTable/styles/countryTable.scss";
+@use "./styles/page.scss";
 
-@use "./styles/page.scss" as *;
+@import "./styles/colors.scss";
 
-@import "src/styles/colors.scss";
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 :root {

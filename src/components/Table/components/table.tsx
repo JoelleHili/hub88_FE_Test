@@ -2,8 +2,8 @@ interface ITable<T extends Record<string, string | number | boolean>> {
     data: T[]
 }
 
-const table = <T extends Record<string, string | number | boolean>,>({ data }: ITable<T>) => {
-    return (<>
+const table = <T extends Record<string, string | number | boolean>,>({ data }: ITable<T>) => (
+    <>
         {data.length > 0 ?
             <div className="table">
                 <div className="table__header__row">
@@ -24,8 +24,8 @@ const table = <T extends Record<string, string | number | boolean>,>({ data }: I
                         </div>
                     ))}
                 </div>
-            </div> : <p className="table__empty">No data available</p>}</>
-    )
-}
+            </div> : <p className="table__empty">No data available</p>}
+    </>
+)
 
 export default table
