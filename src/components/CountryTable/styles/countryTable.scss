@@ -1,12 +1,13 @@
 .country-table {
   display: flex;
   flex-direction: column;
-  gap: 48px;
+  gap: 16px;
   padding: 32px;
   background-color: #3d3d3d;
   box-shadow: inset 8px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 32px;
   width: 50vw;
+  height: 60vh;
 
   &__query {
     display: flex;
@@ -36,6 +37,28 @@
       line-height: 1.5;
       font-weight: 700;
       font-size: 24px;
+      outline: none;
     }
+  }
+
+  &__loading, &__error{
+    height: 50vh;
+    background-color: #ebebeb;
+    color: #3d3d3d;
+    border-radius: 16px;
+    padding: 16px;
+    gap: 8px;
+    box-shadow: inset 8px 4px 4px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__pagination{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    padding: 0px 16px;
   }
 }

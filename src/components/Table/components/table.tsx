@@ -3,8 +3,8 @@ interface ITable<T extends Record<string, string | number | boolean>> {
 }
 
 const table = <T extends Record<string, string | number | boolean>,>({ data }: ITable<T>) => {
-    if (data.length === 0) return <p>No data available</p>
-    
+    if (data.length === 0) return <p className="table__empty">No data available</p>
+
     return (
         <div className="table">
             <div className="table__header__row">
