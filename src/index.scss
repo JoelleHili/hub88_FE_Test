@@ -3,6 +3,7 @@
 
 @use "./styles/page.scss" as *;
 
+@import "src/styles/colors.scss";
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 :root {
@@ -12,8 +13,8 @@
   font-size: 24px;
 
   color-scheme: light dark;
-  color: #EBEBEB;
-  background-color: #4898D1;
+  color: $primary-color;
+  background-color: $bg-color;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;

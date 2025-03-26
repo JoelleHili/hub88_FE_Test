@@ -1,0 +1,9 @@
+$primary-color: #EBEBEB; // Anti-Flash White
+$secondary-color: #3D3D3D; // Onyx
+$bg-color: #4898D1;// Celestial Blue
+
+:export{
+    primaryColor: $primary-color;
+    secondaryColor: $secondary-color;
+    bgColor: $bg-color;
+}

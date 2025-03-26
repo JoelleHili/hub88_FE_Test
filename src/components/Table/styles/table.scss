@@ -1,3 +1,5 @@
+@import "src/styles/colors.scss";
+
 .table {
   height: 50vh;
 
@@ -18,7 +20,7 @@
   }
 
   &__body {
-    background-color: #ebebeb;
+    background-color: $primary-color;
     border-radius: 16px;
     padding: 8px 16px;
     height: 40vh;
@@ -40,22 +42,22 @@
   }
 
   &__cell {
-    color: #3d3d3d;
+    color: $secondary-color;
     flex: 1;
   }
 
   &__divider {
     height: 4px;
     width: 100%;
-    background-color: #3d3d3d;
+    background-color: $secondary-color;
     border-radius: 4px;
 
     box-shadow: inset 8px 4px 4px rgba(0, 0, 0, 0.25);
   }
 
   &__empty {
-    background-color: #ebebeb;
-    color: #3d3d3d;
+    background-color: $primary-color;
+    color: $secondary-color;
     border-radius: 16px;
     margin: 5vh 0vh 0vh 0vh;
     height: 40vh;
