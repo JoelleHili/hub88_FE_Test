@@ -2,9 +2,38 @@
 
 ## Installation
 ### Clone Project
-### Add yarn to Computer
+Ensure you have **Node.js** and **npm/yarn** installed. If you don't have yarn installed yet the Adding Yarn Section should be of help.
+
+1. Clone the project to your computer:
+```sh
+git clone https://github.com/yourusername/hub88_FE_Test.git
+cd hub88_FE_Test
+```
+
+### Adding Yarn
+2a. If you don’t have Yarn installed, you can install it globally via npm:
+```sh
+npm install -g yarn
+```
+2b. To verify the installation:
+```sh
+yarn --version
+```
 ### Getting Dependencies
-
+Now that yarn is installed you can get the project's dependencies using yarn:
+```sh
+yarn
+```
 ## Running
-
+```sh
+yarn dev
+```
 ## Testing
+To Run Tests:
+```sh
+yarn test
+```
+To Run Test Coverage:
+```sh
+yarn test --coverage
+```
