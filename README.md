@@ -15,18 +15,23 @@ cd hub88_FE_Test
 ```sh
 npm install -g yarn
 ```
-2b. To verify the installation:
+2b. To verify that yarn is properly installed:
 ```sh
 yarn --version
 ```
 ### Getting Dependencies
-Now that yarn is installed you can get the project's dependencies using yarn:
+3. Now that yarn is installed you can get the project's dependencies using yarn:
 ```sh
 yarn
 ```
-## Running
+## Running the Project
+Once the installation is done all that is left is to run the project, you can either use:
 ```sh
 yarn dev
+```
+or:
+```sh
+yarn start
 ```
 ## Testing
 To Run Tests:
