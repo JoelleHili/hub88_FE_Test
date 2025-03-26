@@ -8,6 +8,7 @@ import { faMagnifyingGlass, faChevronLeft, faChevronRight } from "@fortawesome/f
 
 const CountryTable: React.FC = () => {
     const [countries, setCountries] = useState<ICountry[]>([])
+    const [searchValue, setSearchValue] = useState<string>("")
     const [result, setResult] = useState<ICountry[]>([])
     const [pageData, setPageData] = useState<ICountry[]>([])
     const [error, setError] = useState<string | null>(null)
@@ -36,6 +37,7 @@ const CountryTable: React.FC = () => {
         setResult(filtered)
         setCurrentPage(1)
         setPageData(filtered.slice(0, pageSize))
+        setSearchValue(value.replace(/[^A-Za-z]/g, "").toUpperCase())
     }
 
     const handleChangePage = (newValue: number) => {
@@ -55,6 +57,8 @@ const CountryTable: React.FC = () => {
                     className="country-table__query__filter"
                     placeholder="Country Code"
                     maxLength={2}
+                    type="text"
+                    value={searchValue}
                     onChange={(e) => handleSearchChange(e.target.value.toUpperCase())} />
             </div>
             <>
