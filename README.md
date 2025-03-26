@@ -36,9 +36,9 @@ yarn start
 ## Testing
 To Run Tests:
 ```sh
-yarn test
+yarn jest
 ```
 To Run Test Coverage:
 ```sh
-yarn test --coverage
+yarn jest --coverage
 ```
