@@ -66,16 +66,16 @@ const CountryTable: React.FC = () => {
             </>
             <div className="country-table__pagination">
                 <FontAwesomeIcon
-                    className="country-table__pagination__button"
+                    className={`country-table__pagination__button ${currentPage <= 1 && "disabled"}`}
                     icon={faChevronLeft}
                     onClick={() => handleChangePage(currentPage - 1)}
                     aria-hidden={currentPage <= 1}
                 />
                 <span
-                    className="country-table__pagination__number">{currentPage}
+                    className="country-table__pagination__number">{`Page ${currentPage} of ${Math.ceil(result.length / pageSize)}`}
                 </span>
                 <FontAwesomeIcon
-                    className="country-table__pagination__button"
+                    className={`country-table__pagination__button ${currentPage >= Math.ceil(result.length / pageSize) && "disabled"}`}
                     icon={faChevronRight}
                     onClick={() => handleChangePage(currentPage + 1)}
                     aria-hidden={currentPage >= Math.ceil(result.length / pageSize)}
