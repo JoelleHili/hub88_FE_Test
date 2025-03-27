@@ -1,39 +1,33 @@
-import client from "../../../api/apolloClient"
 import { useEffect, useState } from "react"
 import { ICountry } from "../types/countryTypes"
 import { Table } from "../.."
 import getCountriesQuery from "../helpers/getCountriesQuery"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass, faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faMagnifyingGlass, faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons"
+import { useQuery } from "@apollo/client"
 
 const CountryTable: React.FC = () => {
     const [countries, setCountries] = useState<ICountry[]>([])
     const [searchValue, setSearchValue] = useState<string>("")
     const [result, setResult] = useState<ICountry[]>([])
     const [pageData, setPageData] = useState<ICountry[]>([])
-    const [error, setError] = useState<string | null>(null)
-    const [state, setState] = useState("loading")
     const [currentPage, setCurrentPage] = useState(1)
     const pageSize = 7
 
+    const { loading, error, data } = useQuery(getCountriesQuery)
+
     useEffect(() => {
-        client
-            .query({ query: getCountriesQuery })
-            .then((response) => {
-                const filterData = response.data.countries.map(({ __typename, ...rest }) => rest)
-                setResult(filterData)
-                setCountries(filterData)
-                setPageData(filterData.slice(0, pageSize))
-                setState("complete")
-            })
-            .catch((err) => {
-                setError(err.message)
-                setState("error")
-            });
-    }, []);
+        if (data && data.countries) {
+            setCountries(data.countries)
+            setResult(data.countries)
+            setPageData(data.countries.slice(0, pageSize))
+        }
+    }, [data])
 
     const handleSearchChange = (value: string) => {
         const filtered = countries.filter((country) => country.code.includes(value))
+        console.log("Countries:", countries)
+        console.log("Filtered:", filtered)
         setResult(filtered)
         setCurrentPage(1)
         setPageData(filtered.slice(0, pageSize))
@@ -46,7 +40,7 @@ const CountryTable: React.FC = () => {
             setCurrentPage(newValue)
             setPageData(result.slice((newValue - 1) * pageSize, newValue * pageSize))
         }
-    };
+    }
 
     return (
         <div className="country-table">
@@ -62,31 +56,36 @@ const CountryTable: React.FC = () => {
                     onChange={(e) => handleSearchChange(e.target.value.toUpperCase())} />
             </div>
             <>
-                {{
-                    loading: (<p className="country-table__loading">Loading...</p>),
-                    error: (<p className="country-table__error">Error: {error}</p>),
-                    complete: (<Table<ICountry> data={pageData} />)
-                }[state]}
+
+                {loading && <p className="country-table__loading">Loading...</p>}
+                {error && <p className="country-table__error">Error: {error.message}</p>}
+                {data && <Table<ICountry> data={pageData} />}
             </>
             <div className="country-table__pagination">
-                <FontAwesomeIcon
-                    className={`country-table__pagination__button ${currentPage <= 1 && "disabled"}`}
-                    icon={faChevronLeft}
+                <button
+                    className={`country-table__pagination__button ${currentPage <= 1 ? "disabled" : ""}`}
                     onClick={() => handleChangePage(currentPage - 1)}
-                    aria-hidden={currentPage <= 1}
-                />
-                <span
-                    className="country-table__pagination__number">{`Page ${currentPage} of ${Math.ceil(result.length / pageSize)}`}
+                    aria-label="Prev Page"
+                    disabled={currentPage <= 1}
+                >
+                    <FontAwesomeIcon icon={faChevronLeft} />
+                </button>
+
+                <span className="country-table__pagination__number">
+                    {`Page ${currentPage} of ${Math.ceil(result.length / pageSize)}`}
                 </span>
-                <FontAwesomeIcon
-                    className={`country-table__pagination__button ${currentPage >= Math.ceil(result.length / pageSize) && "disabled"}`}
-                    icon={faChevronRight}
+
+                <button
+                    className={`country-table__pagination__button ${currentPage >= Math.ceil(result.length / pageSize) ? "disabled" : ""}`}
                     onClick={() => handleChangePage(currentPage + 1)}
-                    aria-hidden={currentPage >= Math.ceil(result.length / pageSize)}
-                />
+                    aria-label="Next Page"
+                    disabled={currentPage >= Math.ceil(result.length / pageSize)}
+                >
+                    <FontAwesomeIcon icon={faChevronRight} />
+                </button>
             </div>
         </div>
-    );
+    )
 }
 
-export default CountryTable;
+export default CountryTable

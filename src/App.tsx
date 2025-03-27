@@ -1,8 +1,12 @@
+import { ApolloProvider } from "@apollo/client"
 import { CountryTable } from "./components"
+import client from "./api/apolloClient"
 
 const App = () => (
   <div className="page">
-    <CountryTable />
+    <ApolloProvider client={client}>
+      <CountryTable />
+    </ApolloProvider>
   </div>
 )
 
